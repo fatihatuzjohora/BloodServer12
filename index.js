@@ -1,7 +1,5 @@
-
 const express = require("express");
 const jwt = require("jsonwebtoken");
-
 
 const cors = require("cors");
 const app = express();
@@ -42,7 +40,6 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   },
 });
-
 
 client
   .connect()
@@ -257,6 +254,7 @@ async function run() {
       res.send(result);
     });
 
+    //
     app.get("/request/:email", async (req, res) => {
       const requesteremail = req.params.email;
       const result = await requestCollection.find({ requesteremail }).toArray();
@@ -271,6 +269,7 @@ async function run() {
       res.send(result);
     });
 
+    //
     app.delete("/blogs/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
@@ -278,6 +277,7 @@ async function run() {
       res.send(result);
     });
 
+    //
     app.post("/user", async (req, res) => {
       const user = req.body;
       const query = { email: user.email };
@@ -291,22 +291,26 @@ async function run() {
       res.send(result);
     });
 
+    //
     app.get("/user", verifyToken, async (req, res) => {
       const result = await userCollection.find().toArray();
       res.send(result);
     });
 
+    //
     app.get("/alls", verifyToken, async (req, res) => {
       const result = await userCollection.find().toArray();
       res.send(result);
     });
 
+    //
     app.get("/user/:email", verifyToken, async (req, res) => {
       const email = req.params.email;
       const result = await userCollection.findOne({ email });
       res.send(result);
     });
 
+    //
     app.put("/user/:id", async (req, res) => {
       const id = req.params.id;
       const options = { upsert: true };
@@ -325,6 +329,7 @@ async function run() {
       res.send(result);
     });
 
+    //
     app.put("/users/:id", async (req, res) => {
       const id = req.params.id;
       const options = { upsert: true };
@@ -383,17 +388,20 @@ async function run() {
       });
     });
 
+    //
     app.post("/confirm", async (req, res) => {
       const payment = req.body;
       const result = await paymentCollection.insertOne(payment);
       res.send(result);
     });
 
+    //
     app.get("/all-payments", async (req, res) => {
       const result = await paymentCollection.find().toArray();
       res.send(result);
     });
 
+    //
     app.get("/products", async (req, res) => {
       console.log(req.query);
       const page = parseInt(req.query.page) || 0;
