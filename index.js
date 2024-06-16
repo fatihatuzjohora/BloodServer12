@@ -276,7 +276,11 @@ app.get('/user',verifyToken, async (req, res) => {
   res.send(result)
 })
 
-
+app.get('/alls',verifyToken, async (req, res) => {
+  
+  const result = await userCollection.find().toArray();
+  res.send(result)
+})
 
 app.get('/user/:email',verifyToken, async (req, res) => {
   const email = req.params.email
