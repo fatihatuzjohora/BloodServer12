@@ -116,10 +116,12 @@ app.put('/blogs/:id', async (req, res) => {
   res.send(result);
 })
 
-app.delete('/blog/:id', async (req, res) =>{
+//issu
+app.delete('/blogs/:id', async (req, res) =>{
   const id = req.params.id;
   const query = {_id: new ObjectId(id)}
-  const res = await blogCollection.deleteOne(query)
+  const result = await blogCollection.deleteOne(query)
+  res.send(result);
 })
 
 app.get('/bloging', async (req, res) => {
