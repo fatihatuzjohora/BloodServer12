@@ -265,7 +265,14 @@ app.delete('/blogs/:id', async (req, res) => {
 })
 
 app.post('/user', async (req, res) => {
-  const user = req.body;
+  const user = req.body
+  const query={email:user.email}
+  const existUser=await userCollection.findOne(query)
+  if (existUser){
+    return res.send({
+      message:'user has already exist'
+    })
+  }
   const result = await userCollection.insertOne(user);
   res.send(result);
 });
