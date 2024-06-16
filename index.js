@@ -71,7 +71,7 @@ async function run() {
       });
       res.send({ token });
     });
-    
+
     // middlewares
     const verifyToken = (req, res, next) => {
       // console.log('inside verify token', req.headers.authorization);
@@ -89,7 +89,6 @@ async function run() {
     };
 
     // users related api
-
     app.get("/all-blogs", async (req, res) => {
       const result = await blogCollection.find().toArray();
       res.send(result);
@@ -102,6 +101,7 @@ async function run() {
       res.send(result);
     });
 
+    //
     app.put("/blogs/:id", async (req, res) => {
       const id = req.params.id;
       const options = { upsert: true };
@@ -120,7 +120,7 @@ async function run() {
       res.send(result);
     });
 
-    //issu
+    //
     app.delete("/blogs/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
