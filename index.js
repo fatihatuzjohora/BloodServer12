@@ -52,7 +52,6 @@ client
     console.log(err);
   });
 
-  
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
@@ -72,6 +71,7 @@ async function run() {
       });
       res.send({ token });
     });
+    
     // middlewares
     const verifyToken = (req, res, next) => {
       // console.log('inside verify token', req.headers.authorization);
