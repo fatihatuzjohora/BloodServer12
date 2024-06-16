@@ -43,6 +43,7 @@ const client = new MongoClient(uri, {
   },
 });
 
+
 client
   .connect()
   .then(() => {
@@ -94,6 +95,7 @@ async function run() {
       res.send(result);
     });
 
+    //
     app.get("/blogs/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
@@ -128,17 +130,20 @@ async function run() {
       res.send(result);
     });
 
+    //
     app.get("/bloging", async (req, res) => {
       const result = await blogCollection.find().toArray();
       res.send(result);
     });
 
+    //
     app.post("/content", async (req, res) => {
       const request = req.body;
       const result = await blogCollection.insertOne(request);
       res.send(result);
     });
 
+    //
     app.put("/donate/:id", async (req, res) => {
       const id = req.params.id;
       const options = { upsert: true };
@@ -159,17 +164,20 @@ async function run() {
       res.send(result);
     });
 
+    //
     app.post("/request", async (req, res) => {
       const request = req.body;
       const result = await requestCollection.insertOne(request);
       res.send(result);
     });
 
+    //
     app.get("/request", async (req, res) => {
       const result = await requestCollection.find().toArray();
       res.send(result);
     });
 
+    //
     app.get("/detail/:id", verifyToken, async (req, res) => {
       const id = req.params.id;
       //console.log('clfehfio');
@@ -179,6 +187,7 @@ async function run() {
       res.send(result);
     });
 
+    //
     app.put("/request/:id", async (req, res) => {
       const id = req.params.id;
       const options = { upsert: true };
@@ -225,6 +234,7 @@ async function run() {
       res.send(result);
     });
 
+    //
     app.put("/update-user/:id", async (req, res) => {
       const id = req.params.id;
       const filter = { _id: new ObjectId(id) };
