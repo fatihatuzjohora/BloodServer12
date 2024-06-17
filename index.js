@@ -9,14 +9,16 @@ require("dotenv").config();
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 app.use(
-  cors()
-  //   {
-  //   origin: [
-  //     "http://localhost:5173",
-  //     "https://blood-donation-1ed49.web.app",
-  //     "https://blood-donation-1ed49.firebaseapp.com",
-  //   ]
-  // }
+  cors(
+    {
+      origin: [
+        "http://localhost:5173",
+        "https://final-project-5c06f.web.app",
+       
+      ]
+    }
+  )
+ 
 );
 
 // middleware
